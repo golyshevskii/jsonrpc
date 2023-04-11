@@ -22,8 +22,9 @@ class Connection:
         try:
             self._timeout = float(timeout)
         except (ValueError, TypeError, Exception) as ex:
+            self._timeout = None
             print(f'TransportMixIn > set_timeout: ERROR -> {datetime.now()}\n{ex.__class__.__name__}:\n{ex}')
-            raise Exception('Incorrect timeout value. Should be a number.')
+            # raise Exception('Incorrect timeout value. Should be a number.')
 
     def reset_timeout(self):
         self._timeout = None
@@ -32,6 +33,7 @@ class Connection:
 tests = (
     ('http_1', None),
     ('http_1', 60),
+    ('http_1', '1O'),
     ('http_1', None),
     ('http_1', 30),
     ('http_1', 20),
